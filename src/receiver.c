@@ -112,6 +112,10 @@ int main(int argc, char **argv){
 		socklen_t address_length = sizeof(&addr);
 		
 		window = malloc(MAXWINDOW * sizeof(struct_window));
+
+
+		// ================== Loop Receiving packet and Sending ACK ====================
+
 		while(1){
 
 			ssize_t nread = recvfrom(sfd, raw_packet, sizeof(raw_packet), 0, (struct sockaddr *) &addr, &address_length);
@@ -206,6 +210,7 @@ int main(int argc, char **argv){
 
 
 
+// ================== Loop to write in File =======================
 
 int selective_loop(int i){
 	int j;
@@ -224,6 +229,9 @@ int selective_loop(int i){
 	}
 	return i;
 }
+
+
+// ==================== Send ACK/NACK===============================
 
 int send_ack_nack(int t, uint8_t seq, uint32_t timestamp){
 	char raw_pkt[MAXPACKETSIZE];
