@@ -21,6 +21,11 @@
 #include "wait_for_client.h"
 #include "packet_interface.h"
 
+#define E_ARG 1
+#define E_NOMEM 2
+#define E_PORT 3
+#define E_SOCKET 4
+
 
 typedef struct {
     pkt_t   *pkt;

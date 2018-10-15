@@ -200,7 +200,7 @@ int main(int argc, char **argv){
 		fclose(file);
 	}
 
-	free(window)
+	free(window);
 	close(sfd);
 
 	printf("Transfert done!\n");
