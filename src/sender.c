@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
                 break;
             default:
                 fprintf(stderr, "argument unknown\n");
-                return EXIT_FAILURE;
+                return E_ARG;
             }
         }
      }
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
 
     if (argc < 2) {
         fprintf(stderr, "missing argument\n");
-        return EXIT_FAILURE;
+        return E_ARG;
     }
 
     struct stat file;
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
     int port = check_port(argv[1]);
     if(check_port(argv[1]) == -1) {
         fprintf(stderr, "invalid port\n");
-        return EXIT_FAILURE;
+        return E_PORT;
     }
 
 
@@ -98,7 +98,7 @@ int main(int argc, char **argv) {
 
     int sfd = create_socket(NULL, -1, &addr, port);
     if (sfd < 0 && wait_for_client(sfd) < 0) {
-        return EXIT_FAILURE;
+        return E_SOCKET;
     }
 
 

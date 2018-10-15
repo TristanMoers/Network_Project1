@@ -122,9 +122,9 @@ int main(int argc, char **argv){
 
 			if(nread > -1){
 				packet = pkt_new();
-				if(packet == NULL){
-					return E_NOMEM;
-				}
+				//if(packet == NULL){
+				//	return E_NOMEM;
+				//}
 				pkt_status_code rv = pkt_decode(raw_packet, MAXPACKETSIZE, packet);
 
 				if(rv == PKT_OK && nb <= MAXWINDOW){
@@ -145,6 +145,8 @@ int main(int argc, char **argv){
 					window[nb]->ack = seqnum;
 					nb++;
 					
+					// If it's last packet
+
 					if(tr == 0){
 						
 						if(seqnum == (uint8_t)((last_seqnum + 1)%256)){
@@ -198,6 +200,7 @@ int main(int argc, char **argv){
 		fclose(file);
 	}
 
+	free(window)
 	close(sfd);
 
 	printf("Transfert done!\n");
